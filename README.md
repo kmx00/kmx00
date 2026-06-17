@@ -1,16 +1,40 @@
 ## Hi there 👋
 
-<!--
-**kmx00/kmx00** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+```cpp
+namespace std
+{
+    __attribute((always_inline)) void __halt() noexcept
+    {
+        ::__halt();
+    }
 
-Here are some ideas to get you started:
+    __attribute((always_inline)) void __nop() noexcept
+    {
+        ::__nop();
+    }
+} // namespace std
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+#define COOL_VM_START() \
+    std::__nop();       \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();      \
+    std::__halt();
+
+#define COOL_VM_END() \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__halt();    \
+    std::__nop();
+```
